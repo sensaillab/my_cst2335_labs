@@ -82,8 +82,9 @@ class _MyHomePageState extends State<MyHomePage> {
             // removed const, now uses myFontSize
             Text(
               'You have pushed the button this many times:',
-              style: TextStyle(fontSize: myFontSize),
+            style: TextStyle(fontSize: myFontSize),
             ),
+            Image.asset("images/algonquin.jpg", width: 200, height:200),
             Text(
               '$_counter',
               style: TextStyle(fontSize: myFontSize),
