@@ -37,6 +37,8 @@ class _MyHomePageState extends State<MyHomePage> {
   var _counter = 0.0;
 // set the font size
   var myFontSize = 30.0;
+  var isChecked = false;
+
 
   void _incrementCounter() {
     setState(() {
@@ -53,6 +55,9 @@ class _MyHomePageState extends State<MyHomePage> {
       myFontSize = newValue;
       _counter = newValue;
     });
+  }
+
+  void buttonClicked(){
   }
 
 
@@ -73,34 +78,32 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            // removed const, now uses myFontSize
-            Text(
-              'You have pushed the button this many times:',
-            style: TextStyle(fontSize: myFontSize),
+          children: [
+            ElevatedButton(
+              onPressed: () {
+                // TODO: Handle Button 1 press
+              },
+              child: const Text('Button 1'),
             ),
-            Image.asset("images/algonquin.jpg", width: 200, height:200),
-            Text(
-              '$_counter',
-              style: TextStyle(fontSize: myFontSize),
+            ElevatedButton(
+              onPressed: () {
+                // TODO: Handle Button 2 press
+              },
+              child: const Text('Button 2'),
             ),
-
-
-            // 4) slider to control myFontSize
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 24.0),
-              child: Slider(
-                min: 10.0,
-                max: 100.0,
-                value: myFontSize,
-
-                onChanged: setNewValue,
-              ),
+            ElevatedButton(
+              onPressed: () {
+                // TODO: Handle Button 3 press
+              },
+              child: const Text('Button 3'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                // TODO: Handle Button 4 press
+              },
+              child: const Text('Button 4'),
             ),
           ],
         ),
