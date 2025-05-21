@@ -79,7 +79,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween ,
+          mainAxisAlignment: MainAxisAlignment.spaceAround  ,
           children: [
             ElevatedButton(
               onPressed: () {
