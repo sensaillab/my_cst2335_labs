@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'CST2335 Lab 1',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.white),
       ),
       home: const MyHomePage(title: 'Flutter Demo Home Page'),
     );
@@ -49,6 +49,54 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  // CircleAvatar with centered text
+  Widget _buildCircleLabel(String assetPath, String label) {
+    return Stack(
+      alignment: Alignment.center,
+      children: [
+        CircleAvatar(
+          backgroundImage: AssetImage(assetPath),
+          radius: 50,
+        ),
+        Text(
+          label,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            color: Colors.white,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ],
+    );
+  }
+
+// CircleAvatar with bottom-center text overlay
+  Widget _buildCircleLabelBottom(String assetPath, String label) {
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        CircleAvatar(
+          backgroundImage: AssetImage(assetPath),
+          radius: 50,
+        ),
+        Container(
+          width: 100,
+          padding: const EdgeInsets.symmetric(vertical: 4),
+          color: Colors.black54,
+          child: Text(
+            label,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 12,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+
+
   // 4) slider callback to resize text
   void setNewValue(double newValue) {
     setState(() {
@@ -70,62 +118,91 @@ class _MyHomePageState extends State<MyHomePage> {
     // fast, so that you can just rebuild anything that needs updating rather
     // than having to individually change instances of widgets.
     return Scaffold(
-      appBar: AppBar(backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: Text("ABCDE"),
-          actions: [
-            OutlinedButton(onPressed: () { }, child:Text("Button 1")),
-            OutlinedButton(onPressed: (){ }, child: Text("Button 2"))]
-      ),
-      drawer: Drawer
-        (child:Text("Hi there")
-      ),
 
-      body: Center(
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround  ,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            ElevatedButton(
-              onPressed: () {
-                // TODO: Handle Button 1 press
-              },
-              child: const Text('Button 1'),
+            // 1) Title centered
+            Center(
+              child: Text(
+                'BROWSE CATEGORIES',
+                style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // TODO: Handle Button 2 press
-              },
-              child: const Text('Button 2'),
+
+            // 2) Subtitle aligned left
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Text(
+                'Not sure about exactly which recipe you\'re looking for? '
+                    'Do a search, or dive into our most popular categories.',
+                style: TextStyle(fontSize: 14),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // TODO: Handle Button 3 press
-              },
-              child: const Text('Button 3'),
+
+            // 3) “By Meat” header centered
+            Center(
+              child: Text(
+                'BY MEAT',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
             ),
-            ElevatedButton(
-              onPressed: () {
-                // TODO: Handle Button 4 press
-              },
-              child: const Text('Button 4'),
+
+            // 4) Row of meat images with centered text
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildCircleLabel('images/meat.jpg', 'BEEF'),
+                _buildCircleLabel('images/chicken.jpg', 'CHICKEN'),
+                _buildCircleLabel('images/pork.jpg', 'PORK'),
+                _buildCircleLabel('images/seafood.jpg', 'SEAFOOD'),
+              ],
+            ),
+
+            // 5) “By Course” header centered
+            Center(
+              child: Text(
+                'BY COURSE',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+            ),
+
+            // 6) Row of course images with bottom-center labels
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildCircleLabelBottom('images/maindish.jpg', 'Main Dishes'),
+                _buildCircleLabelBottom('images/salad.jpg', 'Salad Recipes'),
+                _buildCircleLabelBottom('images/sidedish.jpg', 'Side Dishes'),
+                _buildCircleLabelBottom('images/crockpot.jpg', 'Crockpot'),
+              ],
+            ),
+
+            // 7) “By Dessert” header centered
+            Center(
+              child: Text(
+                'BY DESSERT',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+            ),
+
+            // 8) Row of dessert images with bottom-center labels
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildCircleLabelBottom('images/icecream.jpg', 'Ice Cream'),
+                _buildCircleLabelBottom('images/brownies.jpg', 'Brownies'),
+                _buildCircleLabelBottom('images/pie.jpg', 'Pies'),
+                _buildCircleLabelBottom('images/cookies.jpg', 'Cookies'),
+              ],
             ),
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavigationBar(items: [
-        BottomNavigationBarItem( icon: Icon(Icons.camera), label: 'Camera' ),
-        BottomNavigationBarItem( icon: Icon(Icons.add_call), label: 'Phone'  ),
-      ],
-        onTap: (buttonIndex) {  } ,
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+
+
+
     );
-  }
-}
-
-
-
-
+  }}
